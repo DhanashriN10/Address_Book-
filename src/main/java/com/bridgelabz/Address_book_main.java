@@ -62,14 +62,48 @@ public class Address_book_main {
 	    public static void addContact() {
 	        addressBook.add(getcontacts());
 	    }
+	    
+	    public void displayContacts() {
+
+	        for (Contact contact : addressBook) {
+	            System.out.println(contact);
+	        }
+	    }
 
 
-	public static void main(String[] args) {
+	    public static int findContact(String FirstName) {
+	        for (Contact contact : addressBook) {
+	            if (FirstName.compareToIgnoreCase(contact.getFirstName()) == 0) {
+	                return addressBook.indexOf(contact);
+	            }
+	        }
+	        return -1;
+	    }
+	    public  static void editContact() {
+
+	        Scanner scan = new Scanner(System.in);
+
+	        System.out.print(" Please enter the first name: ");
+	        String FirstName = scan.next();
+
+	        int index = findContact(FirstName);
+
+	        if (index == -1) {
+	            System.out.println(" ERROR: No such contact");
+	            return;
+	        }
+	        addressBook.set(index, getcontacts());
+	    }
+	    
+	   
+
+	/*public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
 		System.out.println("WELCOME TO ADDRESS BOOK");
 		Address_book_main.getcontacts();
 		Address_book_main.addContact();
+		Address_book_main.editContact();
 		
-	}
+	}*/
 }
